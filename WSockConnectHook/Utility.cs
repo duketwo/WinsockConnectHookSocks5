@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace WSockConnectHook
@@ -463,6 +464,20 @@ namespace WSockConnectHook
                     Marshal.FreeHGlobal(lib);
                 }
             }
+        }
+        
+        
+        static public T DeepCopy<T>(T obj)
+        {
+        	BinaryFormatter s = new BinaryFormatter();
+        	using (MemoryStream ms = new MemoryStream())
+        	{
+        		s.Serialize(ms, obj);
+        		ms.Position = 0;
+        		T t = (T)s.Deserialize(ms);
+
+        		return t;
+        	}
         }
 
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)

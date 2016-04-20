@@ -58,7 +58,7 @@ namespace WSockConnectHook
             foreach (var controller in controllerList)
             {
                     controller.Dispose();
-    
+     
             }
         }
 
@@ -66,7 +66,7 @@ namespace WSockConnectHook
         {
             Utility.LoadLibrary("WS2_32.dll");
             Log(LocalHook.GetProcAddress("WS2_32.dll", "connect").ToString());
-            AddController(new WinSockConnectController(LocalHook.GetProcAddress("WS2_32.dll", "connect"), "127.0.0.1", "1080", "user", "pass"));
+            AddController(new WinSockConnectController(LocalHook.GetProcAddress("WS2_32.dll", "connect"), "127.0.0.1", "1337", "username", "password"));
           
         }
 
